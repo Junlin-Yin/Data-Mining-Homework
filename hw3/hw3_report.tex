@@ -1,0 +1,271 @@
+%
+% Machine Learning Course Homework1
+% Only available in ZJU
+%
+\documentclass[12pt,twoside]{article}
+
+\input{macros}
+
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{mdwlist}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{clrscode3e}
+\newcommand{\isnotequal}{\mathrel{\scalebox{0.8}[1]{!}\hspace*{1pt}\scalebox{0.8}[1]{=}}}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{trees}
+
+\newcommand{\answer}{
+ \par\medskip
+ \textbf{Answer:}
+}
+
+\newcommand{\collaborators}{ \textbf{Collaborators:}
+%%% COLLABORATORS START %%%
+
+\tabT Name: Junlin Yin
+
+\tabT Student ID: 3160104340
+%%% COLLABORATORS END %%%
+}
+
+\newcommand{\answerI}{ \answer
+%%% PROBLEM 1 ANSWER START %%%
+Test accuracy: 92.4\%
+%%% PROBLEM 1 ANSWER END %%%
+}
+
+\newcommand{\answerIIa}{ \answer
+%%% PROBLEM 2(a) ANSWER START %%%
+\begin{figure}[htbp]
+    \centering
+    \subfigure[$K=1$]{
+    \begin{minipage}[t]{0.33\linewidth}
+    \centering
+    \includegraphics[width=1.5in]{screenshot/II-1.png}
+    %\caption{fig1}
+    \end{minipage}%
+    }%
+    \subfigure[$K=10$]{
+    \begin{minipage}[t]{0.33\linewidth}
+    \centering
+    \includegraphics[width=1.5in]{screenshot/II-2.png}
+    %\caption{fig2}
+    \end{minipage}%
+    }%
+    \subfigure[$K=100$]{
+    \begin{minipage}[t]{0.33\linewidth}
+    \centering
+    \includegraphics[width=1.5in]{screenshot/II-3.png}
+    %\caption{fig2}
+    \end{minipage}
+    }%
+    \centering
+    \caption{plot results}
+\end{figure}
+%%% PROBLEM 2(a) ANSWER END %%%
+}
+\newcommand{\answerIIb}{ \answer
+%%% PROBLEM 2(b) ANSWER START %%%
+We can introduce validation set to choose a proper K.\\
+In addition, when the boundary looks underfitting, we should lower K; when the
+boundary looks overfitting, we should higher K.
+%%% PROBLEM 2(b) ANSWER END %%%
+}
+\newcommand{\answerIIc}{ \answer
+%%% PROBLEM 2(c) ANSWER START %%%
+Note: I use script 'spider.py' to fetch 100 checkcodes from the website and save them to foler 'checkcode/'.
+Then I use script 'label.py' to label them one by one and save train data to the file 'hack\_data.npz'.
+Finally, I call 'hack.py' to get the 'CheckCode.aspx' and test it. In my test case, the system works well when
+$K=10$.
+%%% PROBLEM 2(c) ANSWER END %%%
+}
+\newcommand{\answerIII}{ \answer 
+%%% PROBLEM 3 ANSWER START %%%
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{screenshot/III.png}
+    \caption{Dicision Tree (E is denoted to entropy and IG is denoted to information gain)}
+\end{figure}
+%%% PROBLEM 3 ANSWER END %%%
+}
+\newcommand{\answerIVa}{ \answer 
+%%% PROBLEM 4(a) ANSWER START %%%
+\begin{figure}[htbp]
+    \centering
+    \subfigure[max SD]{
+    \begin{minipage}[t]{0.5\linewidth}
+    \centering
+    \includegraphics[width=2in]{screenshot/IV-1.png}
+    %\caption{fig1}
+    \end{minipage}%
+    }%
+    \subfigure[min SD]{
+    \begin{minipage}[t]{0.5\linewidth}
+    \centering
+    \includegraphics[width=2in]{screenshot/IV-2.png}
+    %\caption{fig2}
+    \end{minipage}%
+    }%
+    \centering
+    \caption{kmean two results}
+\end{figure}
+%%% PROBLEM 4(a) ANSWER END %%%
+}
+\newcommand{\answerIVb}{ \answer 
+%%% PROBLEM 4(b) ANSWER START %%%
+\begin{enumerate}
+\item Try a lot of times, and choose the one with lowest TSD value like we did in last question.
+\item Use validation set to determine a proper K.    
+\end{enumerate}
+%%% PROBLEM 4(b) ANSWER END %%%
+}
+\newcommand{\answerIVc}{ \answer 
+%%% PROBLEM 4(c) ANSWER START %%%
+\begin{figure}[H]
+    \centering
+    \subfigure[$k=10$]{
+    \begin{minipage}[t]{0.33\linewidth}
+    \centering
+    \includegraphics[width=1.5in]{screenshot/IV-3.png}
+    %\caption{fig1}
+    \end{minipage}%
+    }%
+    \subfigure[$k=20$]{
+    \begin{minipage}[t]{0.33\linewidth}
+    \centering
+    \includegraphics[width=1.5in]{screenshot/IV-4.png}
+    %\caption{fig2}
+    \end{minipage}%
+    }%
+    \subfigure[$k=50$]{
+    \begin{minipage}[t]{0.33\linewidth}
+    \centering
+    \includegraphics[width=1.5in]{screenshot/IV-5.png}
+    %\caption{fig2}
+    \end{minipage}%
+    }%
+    \centering
+    \caption{kmeans digit results}
+\end{figure}
+%%% PROBLEM 4(c) ANSWER END %%%
+}
+\newcommand{\answerIVd}{ \answer 
+%%% PROBLEM 4(d) ANSWER START %%%
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.8\textwidth]{hw3_code/kmeans/sample.jpg}
+    \caption{Original Image}
+\end{figure}
+\begin{figure}[H]
+    \centering 
+    \subfigure[$K=8$]{\label{fig:subfig:a}
+    \includegraphics[width=0.45\linewidth]{screenshot/IV-6.png}}
+    \hspace{0.01\linewidth}
+    \subfigure[$K=16$]{\label{fig:subfig:b}
+    \includegraphics[width=0.45\linewidth]{screenshot/IV-7.png}}
+    \vfill
+    \subfigure[$K=32$]{\label{fig:subfig:a}
+    \includegraphics[width=0.45\linewidth]{screenshot/IV-8.png}}
+    \hspace{0.01\linewidth}
+    \subfigure[$K=64$]{\label{fig:subfig:b}
+    \includegraphics[width=0.45\linewidth]{screenshot/IV-9.png}}
+    \caption{Result Images with different K}
+    \label{fig:subfig}
+\end{figure}
+In normal case, when K is set to 64, we need 6 bits to represent a pixel instead of 24 bits, so the compress ratio is 25\%.\\
+If we consider Huffman encoding, we should know how many pixels belong to each cluster. Besides, we should write a program to
+construct Huffman-tree and calculate the total bits needed. In order to reach the goal, I store an array 'cnt' to a file named
+'cnt.npz'. This array tells us the number of pixels of each cluster. Then I wrote a python script named 'huffman\_encode.py' which
+is zipped along with the code part as well. In this program, I load the 'cnt' array and construct a Huffman-tree, and then calculate:
+$$\sum\limits_{i\in leaves}n_i d_i$$
+Here $n_i$ means the number of pixels that belong to this leaf node, and $d_i$ means the depth of this leaf node, i.e., the number of bits
+we need to represent this cluster. The summation equals the number of total bit used to represent the whole image.\\
+According to 'huffman\_encode.py', we only need 841663 bits compared with 881664 bits when we don't use Huffman encoding, and the
+compress ratio reduces to 23.9\%.
+%%% PROBLEM 4(d) ANSWER END %%%
+}
+
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{0in}
+\setlength{\textheight}{8.5in}
+
+% Fill these in!
+\newcommand{\theproblemsetnum}{3}
+\newcommand{\releasedate}{May 27, 2019}
+\newcommand{\partaduedate}{June 13, 2019}
+\newcommand{\tabUnit}{3ex}
+\newcommand{\tabT}{\hspace*{\tabUnit}}
+
+\begin{document}
+
+\handout{Homework \theproblemsetnum}{\releasedate}
+
+
+
+\collaborators
+% Please download the .zip archive for this problem set, and refer to the
+% hw2.pdf file for instructions on preparing your solutions.
+%
+
+
+\medskip
+
+\hrulefill
+
+\begin{problems}
+
+\problem \textbf{Neural Network}
+\begin{problemparts}
+\problempart 
+\answerI
+\end{problemparts}
+
+\problem \textbf{K-Nearest Neighbor}
+\begin{problemparts}
+\problempart
+Try KNN with different K and plot the decision boundary.
+\answerIIa
+
+\problempart
+How can you choose a proper K when dealing with real-world data?
+\answerIIb
+
+\problempart
+Now let us use KNN algorithm to hack the CAPTCHA of a website that we are all familiar with.
+\answerIIc
+\end{problemparts}
+
+\problem \textbf{Decision Tree and ID3}
+\begin {problemparts}
+\problempart
+\answerIII
+\end{problemparts}
+
+\problem \textbf{K-Means Clustering}
+\begin {problemparts}
+\problempart
+Visualize the process of k-means algorithm for the two trials with largest and smallest SD.
+\answerIVa
+\problempart
+How can we get a stable result using k-means?
+\answerIVb
+\problempart
+Visualize the centroids using show\_digit.py.
+\answerIVc
+\problempart
+Compress images with K set to 8, 16, 32 and 64. What is the compress ratio if we set K to 64?
+\answerIVd
+\end{problemparts}
+\end{problems}
+\end{document}

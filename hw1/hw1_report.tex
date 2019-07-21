@@ -1,0 +1,398 @@
+%
+% Machine Learning Course Homework1
+% Only available in ZJU
+%
+\documentclass[12pt,twoside]{article}
+
+\input{macros}
+
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{mdwlist}
+\usepackage{graphicx}
+\usepackage{clrscode3e}
+\newcommand{\isnotequal}{\mathrel{\scalebox{0.8}[1]{!}\hspace*{1pt}\scalebox{0.8}[1]{=}}}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{trees}
+
+\newcommand{\answer}{
+ \par\medskip
+ \textbf{Answer:}
+}
+
+\newcommand{\collaborators}{ \textbf{Collaborators:}
+%%% COLLABORATORS START %%%
+
+\tabT Name: Junlin Yin
+
+\tabT Student ID: 3160104340
+%%% COLLABORATORS END %%%
+}
+
+\newcommand{\answerIa}{ \answer
+%%% PROBLEM 1(a) ANSWER START %%%
+\begin{enumerate}
+	\item B, F
+	\item C
+	\item A, D
+	\item C, G
+	\item A, E
+	\item A, D
+	\item B, F
+	\item A, E
+	\item B, F
+\end{enumerate}
+%%% PROBLEM 1(a) ANSWER END %%%
+}
+
+\newcommand{\answerIb}{ \answer
+%%% PROBLEM 1(b) ANSWER START %%%
+False.
+\begin{enumerate}
+	\item Sometimes the whole data set is so large that we need to spend much of time training the model
+	if we utilize all the data.
+	\item Aside from training the model, we also need to test it. Therefore, data set should be divided
+	for both training and testing.
+\end{enumerate}
+
+%%% PROBLEM 1(b) ANSWER END %%%
+}
+
+\newcommand{\answerIIa}{ \answer
+%%% PROBLEM 2(a) ANSWER START %%%
+\begin{enumerate}
+	\item $P(B_1 = 1) = \frac{1}{3}$
+	\item $P(B_2 = 0|B_1 = 1) = 1$
+	\item $P(B_1 = 1|B_2 = 0) = \frac{1}{2}$
+	\item Let $X$ = \{the first choice $B_1$ is actually right\}, 
+	$Y$ = \{you choose $B_1$ and $B_2$ opens without prize\}, then\\
+	\begin{displaymath}
+		\begin{aligned}
+			P(X|Y) &= \frac{P(Y|X)*P(X)}{P(Y|X)*P(X)+P(Y|\bar{X})*P(\bar{X})}\\
+			&=\frac{\frac{1}{2}*\frac{1}{3}}{\frac{1}{2}*\frac{1}{3}+\frac{1}{2}*\frac{2}{3}}\\
+			&=\frac{1}{3}
+		\end{aligned}
+	\end{displaymath}
+	That means if you stick to your first choice, you may have a probability of $\frac{1}{3}$ to win the prize,
+	so I will change my choice.
+\end{enumerate}
+%%% PROBLEM 2(a) ANSWER END %%%
+}
+\newcommand{\answerIIb}{ \answer
+%%% PROBLEM 2(b) ANSWER START %%%
+\begin{enumerate}
+	\item The likelihood distribution is shown as follows:
+	
+	\includegraphics[scale=0.6]{screenshot/IIB-1.jpg}
+	
+	There're totally 64 errors when predicting test data, and the error rate is 21.3\%.
+	\item The posterior distribution is shown as follows:
+	
+	\includegraphics[scale=0.6]{screenshot/IIB-2.jpg}
+
+	There're totally 47 errors when predicting test data, and the error rate is 15.7\%.
+	\item  The minimal total risk is 0.243.
+\end{enumerate}
+%%% PROBLEM 2(b) ANSWER END %%%
+}
+
+\newcommand{\answerIIIa}{ \answer 
+%%% PROBLEM 3(a) ANSWER START %%%
+\begin{displaymath}
+	\begin{aligned}
+		P(y=1|x) &= \frac{P(x|y=1)*P(y=1)}{P(x|y=0)*P(y=0) + P(x|y=1)*P(y=1)}\\
+		&=\frac{N(\mu_1, \Sigma_1)*\phi}{N(\mu_0, \Sigma_0)*(1-\phi) + N(\mu_1, \Sigma_1)*\phi}\\
+		&=\frac{1}{1 + \exp{[2x_1+2x_2-2]}}
+	\end{aligned}
+\end{displaymath}
+Decision boundary:
+\begin{displaymath}
+	\begin{aligned}
+		P(y=1|x) &= P(y=0|x)\\
+		P(x|y=1)*P(y=1) &= P(x|y=0)*P(y=0)\\
+		x_1 + x_2 &= 1 + \frac{1}{2}*[\ln{\phi}-\ln{(1-\phi)}]\\
+		x_1 + x_2 &= 1
+	\end{aligned}
+\end{displaymath}
+%%% PROBLEM 3(a) ANSWER END %%%
+
+}
+\newcommand{\answerIIIb}{ \answer
+	%%% PROBLEM 3(b) ANSWER START %%%
+See the code part.
+	%%% PROBLEM 3(b) ANSWER END %%%
+}
+\newcommand{\answerIIIc}{ \answer
+%%% PROBLEM 3(c) ANSWER START %%%
+Here are what I've got in the output:\\
+\includegraphics[scale=0.6]{screenshot/IIIC-1.jpg}
+\includegraphics[scale=0.6]{screenshot/IIIC-2.jpg}
+\includegraphics[scale=0.6]{screenshot/IIIC-3.jpg}
+\includegraphics[scale=0.6]{screenshot/IIIC-4.jpg}
+\includegraphics[scale=0.6]{screenshot/IIIC-5.jpg}
+\includegraphics[scale=0.6]{screenshot/IIIC-6.jpg}
+\includegraphics[scale=0.6]{screenshot/IIIC-7.jpg}
+\includegraphics[scale=0.6]{screenshot/IIIC-8.jpg}
+%%% PROBLEM 3(c) ANSWER END %%%
+}
+
+\newcommand{\answerIIId}{ \answer
+%%% PROBLEM 3(d) ANSWER START %%%
+Suppose there are totally $m$ samples: $(x^{(1)}, y^{(1)}), (x^{(2)}, y^{(2)}), ..., (x^{(m)}, y^{(m)})$, and
+there are totally $k$ classes: $c_1, c_2, ..., c_k$. If one sample $(x^{(1)}, y^{(1)})$ belongs to class $k$, then
+$y^{(i)} = k$.\\
+Thus we can divide the whole samples into $k$ groups, such that $y$ values of the samples in the same group are all
+ the class number.\\
+ \begin{displaymath}
+	\begin{aligned}
+	&c_1: (x_1^{(1)}, y_1^{(1)}), (x_1^{(2)}, y_1^{(2)}), ..., (x_1^{(m_1)}, y_1^{(m_1)})\\
+	&c_2: (x_2^{(1)}, y_2^{(1)}), (x_2^{(2)}, y_2^{(2)}), ..., (x_2^{(m_2)}, y_2^{(m_2)})\\
+	&...\\
+	&c_k: (x_k^{(1)}, y_k^{(1)}), (x_k^{(2)}, y_k^{(2)}), ..., (x_k^{(m_k)}, y_k^{(m_k)})\\
+	\end{aligned}
+\end{displaymath}
+Obviously, $\sum\limits_{i=1}^{k}m_k = m$. Now consider a single sample and its joint probability:\\
+\begin{displaymath}
+	\begin{aligned}
+	P(x_j^{(i)}, y_j^{(i)}|\mu_j, \Sigma_j, \phi_j) &= P(x_j^{(i)} | y_j^{(i)}; \mu_j, \Sigma_j, \phi_j) * P(y_j^{(i)}|\mu_j, \Sigma_j, \phi_j)\\
+	&= P(x_j^{(i)} | y_j^{(i)}; \mu_j, \Sigma_j) * P(y_j^{(i)}|\phi_j)\\
+	&= N(\mu_j, \Sigma_j) * \phi_j
+	\end{aligned}
+\end{displaymath}
+And its log-likelihood is:
+\begin{displaymath}
+	\begin{aligned}
+	l_{ij} &= \ln{P(x_j^{(i)}, y_j^{(i)}|\mu_j, \Sigma_j, \phi_j)}\\
+	&= \ln{N(\mu_j, \Sigma_j)} + \ln{\phi_j}\\
+	&= const - \frac{1}{2}\ln{|\Sigma_j|} - \frac{1}{2}(x_j^{(i)}-\mu_j)^T\Sigma_j^{-1}(x_j^{(i)}-\mu_j) + \ln{\phi_j}\\
+	\end{aligned}
+\end{displaymath}
+Then calculate the gradients of the sum-log-likelihood (Note: this sum only includes data in the same group. This makes derivation more succinct.):
+\begin{displaymath}
+	\begin{aligned}
+	&\nabla{_{\mu_j}\sum\limits_{i=1}^{m_j}l_{ij}} = \sum\limits_{i=1}^{m_j}\Sigma_j^{-1}(x_j^{(i)}-\mu_j)\\
+	&\nabla{_{\Sigma_j}\sum\limits_{i=1}^{m_j}l_{ij}} = -\frac{1}{2}\Sigma_j^{-T}+\frac{1}{2}\sum\limits_{i=1}^{m_j}(x_j^{(i)}-\mu_j)(x_j^{(i)}-\mu_j)^T-\Sigma_j^{-2T}\\
+	&\nabla{_{\phi_j}\sum\limits_{i=1}^{m_j}l_{ij}} = \frac{m_j}{\phi_j}
+	\end{aligned}
+\end{displaymath}
+For $\mu_j$ and $\Sigma_j$, we can solve by letting the gradients be zero:
+\begin{displaymath}
+	\begin{aligned}
+	&\nabla{_{\mu_j}\sum\limits_{i=1}^{m_j}l_{ij}} = 0  \Rightarrow \widehat{\mu_j} = \frac{1}{m_j}\sum\limits_{i=1}^{m_j}x_j^{(i)}\\
+	&\nabla{_{\Sigma_j}\sum\limits_{i=1}^{m_j}l_{ij}} = 0  \Rightarrow \widehat{\Sigma_j} = \sum\limits_{i=1}^{m_j}(x_j^{(i)}-\widehat{\mu_j})(x_j^{(i)}-\widehat{\mu_j})^T\\
+	\end{aligned}
+\end{displaymath}
+For $\phi_j$, we can observe that $l_{ij}$ stays increasing with $\phi_j$, so we need to solve it in another way.\\
+Consider the sum-log-likelihood of all the data (including the ones in different groups):
+\begin{displaymath}
+	\begin{aligned}
+	L &= \sum\limits_{j=1}^{k}\sum\limits_{i=1}^{m_j}l_{ij}\\
+	&= constant + \sum\limits_{j=1}^{k}m_j\ln{\phi_j}\\
+	\end{aligned}
+\end{displaymath}
+Here the constant means that the factor is nothing to do with any $\phi$'s. Note that\\
+$$\sum\limits_{j=1}^{k}m_j = m, \sum\limits_{j=1}^{k}\phi_j = 1$$
+Replace $\phi_k$ with $1-\phi_1-\phi_2-...-\phi_{k-1}$, and then we can rewrite the sum-log-likelihood function like this:
+\begin{displaymath}
+	\begin{aligned}
+	L &= constant + m_1\ln{\phi_1} + ... + m_{k-1}\ln{\phi_{k-1}} + m_k\ln{(1-\sum\limits_{i=1}^{k-1}\phi_i)}\\
+	\end{aligned}
+\end{displaymath}
+Then calculate the gradients of $\phi_1, \phi_2, ..., \phi_{k-1}$ using MLE:
+\begin{displaymath}
+	\begin{aligned}
+	&\nabla{_{\phi_1}L} = \frac{m_1}{\phi_1} - \frac{m_k}{1-\sum\limits_{i=1}^{k-1}\phi_i} = 0  \Rightarrow \frac{m_1}{\widehat{\phi_1}} = \frac{m_k}{\widehat{\phi_k}}\\
+	&\nabla{_{\phi_2}L} = \frac{m_1}{\phi_2} - \frac{m_k}{1-\sum\limits_{i=1}^{k-1}\phi_i} = 0  \Rightarrow \frac{m_2}{\widehat{\phi_2}} = \frac{m_k}{\widehat{\phi_k}}\\
+	&...\\
+	&\nabla{_{\phi_{k-1}}L} = \frac{m_{k-1}}{\phi_{k-1}} - \frac{m_k}{1-\sum\limits_{i=1}^{k-1}\phi_i} = 0  \Rightarrow \frac{m_{k-1}}{\widehat{\phi_{k-1}}} = \frac{m_k}{\widehat{\phi_k}}\\
+	\end{aligned}
+\end{displaymath}
+Therefore, we know that $\phi_i$ must be proportion to $m_i$:
+$$\frac{\widehat{\phi_1}}{m_1} = \frac{\widehat{\phi_2}}{m_2} = ... = \frac{\widehat{\phi_k}}{m_k} = \frac{\sum\limits_{j=1}^{k}\widehat{\phi_j}}{\sum\limits_{j=1}^{k}m_j} = \frac{1}{m}$$
+$$\widehat{\phi_j} = \frac{m_j}{m}$$
+To sum up, the optimal $\mu$'s, $\Sigma$'s and $\phi$'s are:
+\begin{displaymath}
+	\begin{aligned}
+	&\widehat{\mu_j} = \frac{1}{m_j}\sum\limits_{i=1}^{m_j}x_j^{(i)}\\
+	&\widehat{\Sigma_j} = \sum\limits_{i=1}^{m_j}(x_j^{(i)}-\widehat{\mu_j})(x_j^{(i)}-\widehat{\mu_j})^T\\
+	&\widehat{\phi_j} = \frac{m_j}{m}
+	\end{aligned}
+\end{displaymath}
+respectively, where $j = 1, 2, ..., k$.\\
+Specially in 2-class case where $k=2$, the optimal parameters are:
+\begin{displaymath}
+	\begin{aligned}
+	&\widehat{\mu_0} = \frac{1}{m_0}\sum\limits_{i=1}^{m_0}x_0^{(i)}\\
+	&\widehat{\mu_1} = \frac{1}{m_1}\sum\limits_{i=1}^{m_1}x_1^{(i)}\\
+	&\widehat{\Sigma_0} = \sum\limits_{i=1}^{m_0}(x_0^{(i)}-\widehat{\mu_0})(x_0^{(i)}-\widehat{\mu_0})^T\\
+	&\widehat{\Sigma_1} = \sum\limits_{i=1}^{m_1}(x_1^{(i)}-\widehat{\mu_1})(x_1^{(i)}-\widehat{\mu_1})^T\\
+	&\widehat{\phi_0} = \frac{m_0}{m}\\
+	&\widehat{\phi_1} = \frac{m_1}{m}
+	\end{aligned}
+\end{displaymath}
+
+%%% PROBLEM 3(d) ANSWER END %%%
+}
+\newcommand{\answerIIIIa}{ \answer
+%%% PROBLEM 4(a) ANSWER START %%%
+Top-10 words that are most indicative of the SPAM class:
+\begin{enumerate}
+	\item nbsp
+	\item viagra
+	\item pills
+	\item cialis
+	\item voip
+	\item php
+	\item meds
+	\item computron
+	\item sex
+	\item ooking
+\end{enumerate}
+
+%%% PROBLEM 4(a) ANSWER END %%%
+}
+\newcommand{\answerIIIIb}{ \answer
+%%% PROBLEM 4(b) ANSWER START %%%
+$accuracy = 98.6\%$
+%%% PROBLEM 4(b) ANSWER END %%%
+}
+\newcommand{\answerIIIIc}{ \answer
+%%% PROBLEM 4(c) ANSWER START %%%
+No. If the ratio of spam and ham email is 1:99, then we will meet about 1 spam email in 100 emails.
+If the accuracy of the model is 99\%, that means the model will classfy about 1 email by mistake in 
+100 mails.\\
+If the model definitely classifies all the 100 emails correctly, the probability is $0.99^{100}=0.366$, 
+so it is not a good model.
+%%% PROBLEM 4(c) ANSWER END %%%
+}
+\newcommand{\answerIIIId}{ \answer
+%%% PROBLEM 4(d) ANSWER START %%%
+\begin{displaymath}
+	\begin{aligned}
+	&N(TP) = 1093, N(FP) = 28\\
+	&N(FN) = 31, N(TN) = 2883\\
+	&recall = \frac{N(TP)}{N(TP)+N(FN)} = 97.2\%\\
+	&precision = \frac{N(TP)}{N(TP)+N(FP)} = 97.5\%
+	\end{aligned}
+\end{displaymath}
+%%% PROBLEM 4(d) ANSWER END %%%
+}
+\newcommand{\answerIIIIe}{ \answer
+%%% PROBLEM 4(e) ANSWER START %%%
+For a span filter, recall is more important because we usually hope to use the model to find as many as possible spam emails, but we 
+don't care much about the precision.\\
+For a drugs and bombs detecter, precision is more important because the cost of mistake can be very large, so we hope to make dicision
+with higher accuracy.
+%% PROBLEM 4(e) ANSWER END %%%
+}
+
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{0in}
+\setlength{\textheight}{8.5in}
+
+% Fill these in!
+\newcommand{\theproblemsetnum}{1}
+\newcommand{\releasedate}{April 29, 2019}
+\newcommand{\partaduedate}{May 16, 2019}
+\newcommand{\tabUnit}{3ex}
+\newcommand{\tabT}{\hspace*{\tabUnit}}
+
+\begin{document}
+
+\handout{Homework \theproblemsetnum}{\releasedate}
+
+
+
+\collaborators
+% Please download the .zip archive for this problem set, and refer to the
+% hw1.pdf file for instructions on preparing your solutions.
+%
+
+
+\medskip
+
+\hrulefill
+
+\begin{problems}
+
+\problem \textbf{Machine Learning Problems}
+\begin{problemparts}
+\problempart Choose proper word(s) from
+\answerIa
+
+
+\problempart True or False: “To fully utilizing available data resource, we should use all the data we
+have to train our learning model and choose the parameters that maximize performance
+on the whole dataset.” Justify your answer.
+\answerIb
+
+\end{problemparts}
+\newpage
+
+\problem \textbf{Bayes Decision Rule}
+\begin{problemparts}
+\problempart
+Suppose you are given a chance to win bonus grade points:
+
+
+\answerIIa
+
+\problempart Now let us use bayes decision theorem to make a two-class classifier $\cdots$.
+
+\answerIIb
+
+
+\end{problemparts}
+\newpage
+\problem \textbf{Gaussian Discriminant Analysis and MLE}
+
+Given a dataset consisting of m samples. We assume these samples are independently generated by one of two Gaussian distributions$\cdots$
+\begin {problemparts}
+\problempart What is the decision boundary?
+
+\answerIIIa
+
+\problempart An extension of the above model is to classify K classes by fitting a Gaussian distribution for each class$\cdots$
+\answerIIIb
+
+\problempart  Now let us do some field work – playing with the above 2-class Gaussian discriminant model.
+\answerIIIc
+
+\problempart What is the maximum likelihood estimation of $\phi, \mu_0$ and $\mu_1$?
+\answerIIId 
+
+\end{problemparts}
+
+\newpage
+
+\problem  \textbf{Text Classification with Naive Bayes}
+
+\begin{problemparts}
+\problempart  List the top 10 words.
+
+\answerIIIIa
+
+\problempart What is the accuracy of your spam filter on the testing set?
+\answerIIIIb
+
+\problempart True or False: a model with 99\% accuracy is always a good model. Why?
+\answerIIIIc
+
+\problempart Compute the precision and recall of your learnt model.
+\answerIIIId 
+
+\problempart For a spam filter, which one do you think is more important, precision or recall? What about a classifier to identify drugs and bombs at airport? Justify your answer.
+\answerIIIIe 
+
+\end{problemparts}
+
+\end{problems}
+\end{document}

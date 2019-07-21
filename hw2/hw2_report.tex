@@ -1,0 +1,216 @@
+%
+% Machine Learning Course Homework1
+% Only available in ZJU
+%
+\documentclass[12pt,twoside]{article}
+
+\input{macros}
+
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{mdwlist}
+\usepackage{graphicx}
+\usepackage{clrscode3e}
+\newcommand{\isnotequal}{\mathrel{\scalebox{0.8}[1]{!}\hspace*{1pt}\scalebox{0.8}[1]{=}}}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{trees}
+
+\newcommand{\answer}{
+ \par\medskip
+ \textbf{Answer:}
+}
+
+\newcommand{\collaborators}{ \textbf{Collaborators:}
+%%% COLLABORATORS START %%%
+
+\tabT Name: Junlin Yin
+
+\tabT Student ID: 3160104340
+%%% COLLABORATORS END %%%
+}
+
+\newcommand{\answerIa}{ \answer
+%%% PROBLEM 1(a) ANSWER START %%%
+\begin{enumerate}
+\item Given the size of testing set 1000:\\
+When the size of training set is 10, training error rate: 0, testing error rate: 10.9\%;\\
+When the size of training set is 100, training error rate: 0.146\%, testing error rate： 1.38\%.
+\item Given the size of testing set 1000:\\
+When the size of training set is 10, average number of iterations: 52;\\
+When the size of training set is 100, average number of iterations: 2241.
+\item Given the size of testing set 1000:\\
+The Perceptron Machine will iterate infinitely if the maximum number of iterations is not defined.\\
+The training error cannot reach zero, and the testing error is much higher than that in linearly separatable cases.
+\end{enumerate}
+%%% PROBLEM 1(\item d) ANSWER END %%%
+}
+
+\newcommand{\answerIb}{ \answer
+%%% PROBLEM 1(b) ANSWER START %%%
+\begin{enumerate}
+\item Given the size of testing set 1000:\\
+The training error rate: 3.89\%, the testing error rate: 4.68\%.
+\item Given the size of testing set 1000:\\
+The training error rate: 13.1\%, the testing error rate: 14.3\%.
+\item The training error rate: 49.0\%, the testing error rate: 55.0\%.
+\item The training error rate: 5.00\%, the testing error rate: 6.60\%.
+\end{enumerate}
+%%% PROBLEM 1(b) ANSWER END %%%
+}
+
+\newcommand{\answerIc}{ \answer
+%%% PROBLEM 1(c) ANSWER START %%%
+Here is the breif derivation of the logistic gradient:
+As the question suggests, the likelihood function can be presented as:
+$$P(y|x, \omega) = \hat{y}^y*(1-\hat{y})^{1-y}$$
+where $\hat{y} = \frac{1}{1+\exp{[-\omega^Tx]}}$, so the total-log-likelihood function is:
+\begin{displaymath}
+    \begin{aligned}
+    L &= \sum\limits_{i=1}^{m}l_i\\
+    &= \sum\limits_{i=1}^{m}y^{(i)}\log{\hat{y^{(i)}}}+(1-y^{(i)})\log{(1-\hat{y^{(i)}})}
+    \end{aligned}
+\end{displaymath}
+where $m$ is the number of samples. Thus we can define the loss function as the minus log-likelihood function,
+ so the gradient is:
+ \begin{displaymath}
+    \begin{aligned}
+    \nabla_\omega J &= -\frac{\partial}{\partial\omega}L\\
+    &= \sum\limits_{i=1}^{m}\frac{\hat{y^{(i)}} - y^{(i)}}{\hat{y^{(i)}}(1-\hat{y^{(i)}})}*\frac{\partial\hat{y^{(i)}}}{\partial \omega}\\
+    &= \sum\limits_{i=1}^{m}x^{(i)}*(\hat{y^{(i)}} - y^{(i)})\\
+    &= [\hat{y} - y]X^T
+    \end{aligned}
+\end{displaymath}
+Based on this:
+\begin{enumerate}
+    \item Given the size of testing set 1000:\\
+    The training error rate: 0.29\%, the testing error rate: 1.09\%.
+    \item Given the size of testing set 10000:\\
+    The training error rate: 11.8\%, the testing error rate: 12.8\%.       
+\end{enumerate}
+%%% PROBLEM 1(c) ANSWER END %%%
+}
+
+\newcommand{\answerId}{ \answer
+%%% PROBLEM 1(d) ANSWER START %%%
+\begin{enumerate}
+    \item Given the size of testing set 1000:\\
+    The training error rate: 0, the testing error rate: 3.36\%.
+    \item Given the size of testing set 1000:\\
+    The training error rate: 0, the testing error rate: 1.03\%. 
+    \item Average number of support vectors: 3.5.  
+\end{enumerate}
+%%% PROBLEM 1(d) ANSWER END %%%
+}
+
+\newcommand{\answerIIa}{ \answer
+%%% PROBLEM 2(a) ANSWER START %%%
+\begin{enumerate}
+    \item According to LOOCV, the optimal lambda is 10.
+    \item When $\lambda=0$, $\sum\limits_{i=0}^{P}\omega_i^2=14.6$; 
+    when $\lambda=10$, $\sum\limits_{i=0}^{P}\omega_i^2=1.23$.
+    \item When $\lambda=0$, the training error is 0 and the testing error is 10.7\%; 
+    When $\lambda=10$, the training error is 0 and the testing error is 7.23\%.
+\end{enumerate}
+%%% PROBLEM 2(a) ANSWER END %%%
+}
+\newcommand{\answerIIb}{ \answer
+%%% PROBLEM 2(b) ANSWER START %%%
+According to LOOCV, the optimal lambda is 0.001.\\
+When $\lambda=0$, the training error is 0 and the testing error is 6.73\%; 
+When $\lambda=0.001$, the training error is 0 and the testing error is 6.58\%.
+%%% PROBLEM 2(b) ANSWER END %%%
+}
+
+\newcommand{\answerIIIa}{ \answer 
+%%% PROBLEM 3(a) ANSWER START %%%
+\begin{enumerate}
+\item False. Once the model is defined, the bias is defined, too. It doesn't work no matter how 
+many samples are added if the model is over-simple.
+\item False. We don't like neither high-bias and high-variance. Although models with high variance can
+fit the training data perfectly, they don't generalize to testing data very well. However, high-variance
+problems can be tackled by adding more training samples, which is likely to get further improvement
+compared with high-bias cases.
+\item True. When the parameters get more, there's a greater chance that training data are not enough, thus
+creating too complicated models.
+\item False. Regularization is used to mitigate over-fitting, where testing error will be reduced but training 
+error will not necessarily. On the contrary, the training error will probably increase a little bit because
+some mistakes may be allowed.
+\item False. By using very large $\lambda$, the over-fitting penalty gets extremely huge, but the high-bias
+penalty gets relatively small. Therefore, models with large $\lambda$ usually suffer from high-bias problem.
+\end{enumerate}
+%%% PROBLEM 3(a) ANSWER END %%%
+}
+
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{0in}
+\setlength{\textheight}{8.5in}
+
+% Fill these in!
+\newcommand{\theproblemsetnum}{2}
+\newcommand{\releasedate}{May 16, 2019}
+\newcommand{\partaduedate}{May 30, 2019}
+\newcommand{\tabUnit}{3ex}
+\newcommand{\tabT}{\hspace*{\tabUnit}}
+
+\begin{document}
+
+\handout{Homework \theproblemsetnum}{\releasedate}
+
+
+
+\collaborators
+% Please download the .zip archive for this problem set, and refer to the
+% hw2.pdf file for instructions on preparing your solutions.
+%
+
+
+\medskip
+
+\hrulefill
+
+\begin{problems}
+
+\problem \textbf{A Walk Through Linear Models}
+\begin{problemparts}
+\problempart Perceptron
+\answerIa
+
+\problempart Linear Regression
+\answerIb
+
+\problempart Logistic Regression
+\answerIc
+
+\problempart Support Vector Machine
+\answerId
+\end{problemparts}
+\newpage
+
+\problem \textbf{Regularization and Cross-Validation}
+\begin{problemparts}
+\problempart
+Implement Ridge Regression and use LOOCV to tune...
+\answerIIa
+
+\problempart
+Implement Logistic Regression and use LOOCV to tune...
+\answerIIb
+
+\end{problemparts}
+\newpage
+\problem \textbf{Bias Variance Trade-off}
+\begin {problemparts}
+\problempart True or False:
+\answerIIIa
+\end{problemparts}
+
+\end{problems}
+\end{document}

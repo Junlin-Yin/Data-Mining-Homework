@@ -1,0 +1,195 @@
+%
+% Machine Learning Course Homework1
+% Only available in ZJU
+%
+\documentclass[12pt,twoside]{article}
+
+\input{macros}
+
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{mdwlist}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{clrscode3e}
+\newcommand{\isnotequal}{\mathrel{\scalebox{0.8}[1]{!}\hspace*{1pt}\scalebox{0.8}[1]{=}}}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{matrix}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{trees}
+
+\newcommand{\answer}{
+ \par\medskip
+ \textbf{Answer:}
+}
+
+\newcommand{\collaborators}{ \textbf{Collaborators:}
+%%% COLLABORATORS START %%%
+
+\tabT Name: Junlin Yin
+
+\tabT Student ID: 3160104340
+%%% COLLABORATORS END %%%
+}
+
+\newcommand{\answerIa}{ \answer
+%%% PROBLEM 1(a) ANSWER START %%%
+When K\_in\_knn\_graph is 100 and threshold is 0.5, the Spectral Clustering system works well.
+\begin{figure}[htbp]
+    \centering
+    \subfigure[Spectral Clustering]{
+    \begin{minipage}[t]{0.5\linewidth}
+    \centering
+    \includegraphics[width=2in]{screenshot/I-1.png}
+    %\caption{fig1}
+    \end{minipage}%
+    }%
+    \subfigure[KMeans]{
+    \begin{minipage}[t]{0.5\linewidth}
+    \centering
+    \includegraphics[width=2in]{screenshot/I-2.png}
+    %\caption{fig2}
+    \end{minipage}%
+    }%
+    \centering
+    \caption{two results compare}
+\end{figure}
+%%% PROBLEM 1(a) ANSWER END %%%
+}
+
+\newcommand{\answerIb}{ \answer
+%%% PROBLEM 1(b) ANSWER START %%%
+When I use 5 nearest neighbor to construct adjacency matrix, I get the following results:
+\begin{table}[htbp]
+	\centering
+	\caption{results}  % 表格标题
+	%字母的个数对应列数，|代表分割线
+	% l代表左对齐，c代表居中，r代表右对齐
+	\begin{tabular}{|c|c|c|}  
+		\hline  % 表格的横线
+		 &Spectral&KMeans \\  % 表格中的内容，用&分开，\\表示下一行
+		\hline
+		Accuracy&78.8\%&59.4\% \\
+        \hline
+        MutualInfo&0.626&0.357 \\
+        \hline
+	\end{tabular}
+\end{table}
+%%% PROBLEM 1(b) ANSWER END %%%
+}
+
+\newcommand{\answerIIa}{ \answer
+%%% PROBLEM 2(a) ANSWER START %%%
+Main steps in my code:
+\begin{enumerate}
+    \item turn the images into grayscale ones;
+    \item get the coordinates of these relatively white points (controled by a threshold);
+    \item apply PCA to these white points and get the first Principle Component;
+    \item calculate the restoration angle using the first Principle Component, and construct the Rotating matrix;
+    \item rotate these white points and create the new image after restoration.
+\end{enumerate}
+The results show that the PCA does work, but there is still some noise in the output image. 
+It is created by the threshold which need to be set manually.
+What's more, some digits are hard to distinguish after the rotation, such as 5 and 6. 
+In order to show the results in a clearer way, I use PIL.Image library. 
+By doing this, I can directly rotate the original RGB image so the color information is preserved.
+Plus, the noise created by the threshold will also vanish.
+%%% PROBLEM 2(a) ANSWER END %%%
+}
+\newcommand{\answerIIb}{ \answer
+%%% PROBLEM 2(b) ANSWER START %%%
+\begin{enumerate}
+    \item see the code part.
+    \item here are the results: (1 nearest neighbor)
+    \begin{table}[htbp]
+        \centering
+        \caption{test error using different d}  % 表格标题
+        %字母的个数对应列数，|代表分割线
+        % l代表左对齐，c代表居中，r代表右对齐
+        \begin{tabular}{|l|l|}  
+            \hline  % 表格的横线
+            d&Test Error \\  % 表格中的内容，用&分开，\\表示下一行
+            \hline
+            8&26\% \\
+            \hline
+            16&18.5\% \\
+            \hline
+            32&14.5\% \\
+            \hline
+            64&12\% \\
+            \hline
+            128&12.5\% \\
+            \hline
+            256&12\% \\
+            \hline
+            512&12\% \\
+            \hline
+            1024&12\% \\
+            \hline
+        \end{tabular}
+    \end{table}
+    \item see the code part. 
+    We can know from the images and test errors that 64 dimensions are good enough to preserve the features of original inputs.
+\end{enumerate}
+%%% PROBLEM 2(b) ANSWER END %%%
+}
+
+\setlength{\oddsidemargin}{0pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{0in}
+\setlength{\textheight}{8.5in}
+
+% Fill these in!
+\newcommand{\theproblemsetnum}{4}
+\newcommand{\releasedate}{June 10, 2019}
+\newcommand{\partaduedate}{June 24, 2019}
+\newcommand{\tabUnit}{3ex}
+\newcommand{\tabT}{\hspace*{\tabUnit}}
+
+\begin{document}
+
+\handout{Homework \theproblemsetnum}{\releasedate}
+
+
+
+\collaborators
+% Please download the .zip archive for this problem set, and refer to the
+% hw2.pdf file for instructions on preparing your solutions.
+%
+
+
+\medskip
+
+\hrulefill
+
+\begin{problems}
+
+\problem \textbf{Spectral Clustering}
+\begin{problemparts}
+\problempart
+First, experiment Spectral Clustering on synthesis data...
+\answerIa
+
+\problempart
+Try Spectral Clustering on real-world data...
+\answerIb
+\end{problemparts}
+
+\problem \textbf{Principle Component Analysis}
+\begin{problemparts}
+\problempart
+Recover the rotated CAPTCHA image using PCA...
+\answerIIa
+
+\problempart
+Now let us apply PCA to a face image dataset...
+\answerIIb
+\end{problemparts}
+\end{problems}
+\end{document}
